@@ -1,36 +1,38 @@
 let Meetups = require('../model/Meetup');
 
-createMeetup = (req, res) => {
-   const newMeetup = {
-      id: Date.now(),
-      topic: req.body.topic,
-      location: req.body.location,
-      happeningOn: req.body.happeningOn,
-      tag: [req.body.tags ||null],
-      details: req.body.details || null,
-      coverImage: req.body.coverImage||null,
-      host: req.body.host ||null
-   }
+getASpecificMeetupRecord = (req, res) => {
+  //const  id=  req.params.meetupId;
   
-   if ( !newMeetup.topic || !newMeetup.location || !newMeetup.happeningOn) {
-      res.json({
+   if(!req.params.meetupId){
+      res.json({ 
          status: 400,
-         error: 'Bad request error, missing required data. Note: topic, location and happeningOn are required'
-
-      })
-   } 
-   else {
-   
-
-      Meetups.push(newMeetup);
-      res.json({
-         status: 201,
-         message: 'New meetup successfully created ',
-         data: [newMeetup]
+         data: [Meetups],
+         message: 'Bad Request, please include meetup Id in your request as parameter'
+         
       })
    }
+   else{
+      const meetup= Meetups.find((meetup)=>meetup.id === Number(req.params.meetupId));
+      console.log(Meetups);
+      if(meetup){
+         res.json({
+            status: 200,
+            data: [meetup]
+         })
+      }
+      else{
+         res.json({
+            status:204,
+            message: 'Request successful but result contains no data, probably a case of non existence meetup id',
+            data:[]
+         })
+      }
+     
+   }
+      
+   
 }
 
 
 
-module.exports = {createMeetup}
+module.exports = {getASpecificMeetupRecord}
