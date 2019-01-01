@@ -1,19 +1,17 @@
 let express = require('express');
 let router = express.Router();
+let meetupController=require('./controller/Meetup');
 
-let meetupController = require('./controller/Meetup');
+// router.route('/meetups/:meetupId')
+//    .get(meetupController.getASpecificMeetupRecord);
 
-
-router.post('/meetups', meetupController.createMeetup);
-
-
-
+router.get('/meetups/:meetupId', meetupController.getASpecificMeetupRecord)
 
 router.route('*')
    .get((req, res) => {
       res.json({
          status: 404,
-         message: 'Incorrect API endpoint; please check your api URL (even for as little thing as spelling)'
+         message: 'Incorrect API endpoint; please check your api URL (even for as little things as spelling)'
       });
    })
 
