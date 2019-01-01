@@ -4,6 +4,7 @@ node_js:
 cache:
   directories:
     - "node_modules"
+
 sudo: false
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
@@ -14,3 +15,4 @@ cache:
     "start": "SET NODE_ENV=dev && node server.js",
     "test": "nyc mocha --exit",
     "coverage": "nyc report"}
+
