@@ -1,10 +1,6 @@
-
-
-  laguage: node_js
-node_js:
- - "stable"
- script:
- yarn test
-
-
-  
+language: node_js
+node_js: 
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
