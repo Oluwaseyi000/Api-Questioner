@@ -10,3 +10,7 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
 cache:
   yarn: true
+"scripts": {
+    "start": "SET NODE_ENV=dev && node server.js",
+    "test": "nyc mocha --exit",
+    "coverage": "nyc report"}
