@@ -15,6 +15,6 @@ cache:
     "start": "SET NODE_ENV=dev && node server.js",
     "test": "nyc mocha --exit",
     "coverage": "nyc report"}
- feature/get_a_specific_meetup_record
+
 after_success: npm run coverage
 
