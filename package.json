@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "SET NODE_ENV=dev && node server.js",
-    "test": "nyc mocha --reporter=html --exit",
+    "test": "nyc mocha --exit",
     "coverage": "nyc report  --reporter=text-lcov | coveralls"
   }
 }
