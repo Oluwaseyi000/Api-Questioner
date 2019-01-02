@@ -4,6 +4,7 @@ node_js:
 cache:
   directories:
     - "node_modules"
+
 sudo: false
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
@@ -20,6 +21,7 @@ before_script:
 scripts: {
     "start": "SET NODE_ENV=dev && node server.js",
     "test": "nyc mocha --exit",
+
     "coverage": "nyc report"} 
     # Pipe the coverage data to Code Climate
 after_script:
@@ -29,3 +31,8 @@ after_script:
   - ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.frontend.json coverage/frontend/lcov.info  # Format frontend coverage
   - ./cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 2                  # Sum both coverage parts into coverage/codeclimate.json
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi  # Upload coverage/codeclimate.json
+
+    "coverage": "nyc report"}
+ feature/get_a_specific_meetup_record
+after_success: npm run coverage
+
